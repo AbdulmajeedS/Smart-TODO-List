@@ -1,0 +1,12 @@
+User Stories
+-As a user, when logged in
+I can add things to my todo list and have them auto categorized.
+-As a user,
+I can edit, my todo list item category
+-As a  user,
+I can mark my todo list item as complete
+-As a new user,
+I should be able to register
+-As a user,
+I should be able to see my todo list
+Because I am logged in
