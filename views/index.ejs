@@ -9,12 +9,35 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
 </head>
 
+
 <body>
-  <h1>Have fun! 🥔</h1>
+  <nav>
+  <div class="topnav">
+    <div class="login-container">
+      <form action="/login">
+        <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="30px" width="30px">
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+  </nav>
+
+  <div id="container">
+    <h1> Smart-To-Do  <i class="fa fa-plus"></i></h1> <input type="text" placeholder="Let's Add Something Amazing TO-Do!">
+    <ul>
+        <li><span><i class="fa fa-trash"></i></span> Go Study on Midterms</li>
+        <li><span><i class="fa fa-trash"></i></span> Pair Up With Your Group</li>
+        <li><span><i class="fa fa-trash"></i></span> Do Not Forget to Take Breaks</li>
+    </ul>
+</div>
 </body>
 
 </html>
