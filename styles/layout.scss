@@ -1,6 +1,47 @@
-// See: https://sass-lang.com/
+// // See: https://sass-lang.com/
 
-body,
-html {
+// body,
+// html {
+//   margin: 0;
+// }
+
+
+body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+.topnav {
+  overflow: hidden;
+  background-color: #ff0808;
+}
+
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 17px;
+  border: none;
+  width:120px;
+  float: right;
+}
+
+.topnav .login-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background-color: #555;
+  color: white;
+  font-size: 17px;
+  border: none;
+  // cursor: pointer;
+}
+
+.topnav .login-container button:hover {
+  background-color: green;
+}
+
+
+
