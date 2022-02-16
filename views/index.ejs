@@ -20,24 +20,38 @@
 
 <body>
   <nav>
-  <div class="topnav">
-    <div class="login-container">
-      <form action="/login">
-        <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="30px" width="30px">
-        <button type="submit">Login</button>
-      </form>
+    <div class="topnav">
+      <div class="login-container">
+        <form action="/login">
+          <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="30px" width="30px">
+          <button type="submit">Login</button>
+        </form>
+        <form action="/register"> <button type="submit">Register</button> </form>
+      </div>
     </div>
-  </div>
   </nav>
 
   <div id="container">
-    <h1> Smart-To-Do  <i class="fa fa-plus"></i></h1> <input type="text" placeholder="Let's Add Something Amazing TO-Do!">
+    <h1> Smart-To-Do <i class="fa fa-plus"></i></h1>
+    <h2>Catagories</h2>
+    <p>Select catagories from drop-down list:</p>
+    <form action="/action_page.php">
+      <label for="cars">Choose a car:</label>
+      <select id="cars" name="cars">
+        <option value="volvo">To Watch</option>
+        <option value="saab">To Eat</option>
+        <option value="fiat">To Buy</option>
+        <option value="audi">To Read</option>
+      </select>
+    </form>
+
+    <input type="text" placeholder="Let's Add Something Amazing TO-Do!">
     <ul>
-        <li><span><i class="fa fa-trash"></i></span> Go Study on Midterms</li>
-        <li><span><i class="fa fa-trash"></i></span> Pair Up With Your Group</li>
-        <li><span><i class="fa fa-trash"></i></span> Do Not Forget to Take Breaks</li>
+      <li><span><i class="fa fa-trash"></i></span> Go Study on Midterms</li>
+      <li><span><i class="fa fa-trash"></i></span> Pair Up With Your Group</li>
+      <li><span><i class="fa fa-trash"></i></span> Do Not Forget to Take Breaks</li>
     </ul>
-</div>
+  </div>
 </body>
 
 </html>
