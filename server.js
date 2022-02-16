@@ -52,19 +52,21 @@ app.use("/api/users", usersRoutes(db));
 // Warning: avoid creating more routes in this file!r
 // Separate them into separate routes files (see above).
 app.get("/login", (req,res) => {
-  res.render("login");
+  res.redirect("dashboard");
 })
 
 app.get("/register", (req,res) => {
   res.render("register");
 })
 
+app.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+  //get request form db
+});
 
 app.get("/", (req, res) => {
   res.render("index");
 });
-
-
 
 app.post("/login", async(req, res) => {
   console.log(req.body)
@@ -79,10 +81,14 @@ app.post("/login", async(req, res) => {
 
   // set user id to the user id from database!
   // error if not found
-  // req.session["user_id"] = userId;
-  // res.redirect("/");
+  req.session["user_id"] = userExist.id;
+  res.redirect("/");
 });
 
+app.post ("/logout",(req, res) =>  {
+  req.session["user_id"] = null;
+  res.render("login")
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
