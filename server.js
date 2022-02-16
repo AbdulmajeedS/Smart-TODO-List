@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieSession = require('cookie-session');
+const {emailExists} = require("./helper")
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -48,31 +49,44 @@ app.use("/api/users", usersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
-// Warning: avoid creating more routes in this file!
+// Warning: avoid creating more routes in this file!r
 // Separate them into separate routes files (see above).
 app.get("/login", (req,res) => {
   res.render("login");
 })
 
+app.get("/register", (req,res) => {
+  res.render("register");
+})
+
+
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
 
-app.post("/login", (req, res) => {
+
+app.post("/login", async(req, res) => {
   console.log(req.body)
+  // db.query('SELECT * FROM users;',(error,response) => {
+  //   console.log(response)
+  // })
   const email = req.body.email;
   const password = req.body.password;
   // check email and password and database
+  const userExist = await emailExists(email,db);
+  console.log(userExist);
+
   // set user id to the user id from database!
   // error if not found
-  req.session.user_id = userId;
-  res.redirect("/");
+  // req.session["user_id"] = userId;
+  // res.redirect("/");
 });
 
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
+});
 
 //next step CRUD
 
