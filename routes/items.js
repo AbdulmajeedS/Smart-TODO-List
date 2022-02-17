@@ -5,12 +5,14 @@
 
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const userID = req.session["user_id"]
-    db.query(`SELECT * FROM items WHERE user_id = $1;`, [userID])
+    const categoryQuery = `category_id = $2` || ';';
+    // // console.log(categoryQuery, req.params.category)
+    db.query(`SELECT * FROM items WHERE user_id = $1 ` + categoryQuery, [userID, req.params.category])
       .then(data => {
         const items = data.rows;
         res.render("dashboard", { items });
