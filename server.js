@@ -99,12 +99,19 @@ app.get("/error-page", (req,res) => {
 
 app.get("/", (req, res) => {
   const userID = req.session['user_id'];
+  let categoryQuery = ";";
+  if (req.query.category) {
+    categoryQuery = ` and category_id = ${req.query.category}`;
+  }
+console.log(categoryQuery, req.query.category);
+console.log(userID)
+
   if (userID) {
-    db.query(`SELECT * FROM items WHERE user_id = $1;`, [userID])
+    db.query(`SELECT * FROM items WHERE user_id = ${userID} `+ categoryQuery)
     .then((data) => {
       console.log(data)
       const items = data.rows;
-      const user_id = items[0].user_id;
+      // const user_id = items[0].user_id;
       res.render("index", { items, user_id:userID });
     })
     .catch(err => {
