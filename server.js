@@ -42,31 +42,85 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const res = require("express/lib/response");
+const itemsRoutes = require("./routes/items");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
+app.use("/items", itemsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!r
 // Separate them into separate routes files (see above).
 app.get("/login", (req,res) => {
-  res.redirect("dashboard");
+  res.render("login");
+})
+
+app.get("/profile", (req,res) => {
+
+  //get user_id
+  //get data from db
+  // render out tamp with data from db
+
+  res.render("profile");
+})
+
+app.post("/profile", (req,res) => {
+  //get user_id
+  //update user data
+  //redirect /profile
+
+  res.render("profile");
 })
 
 app.get("/register", (req,res) => {
   res.render("register");
 })
 
-app.get("/dashboard", (req, res) => {
-  res.render("dashboard");
-  //get request form db
-});
+app.post("/register", (req,res)=> {
+  const email = req.body.email;
+  const password = req.body.password;
+ //create a new entry in the user table
+ //if succesfull redirect it to '/login'
+ //create a function to get items
+  res.redirect("/login")
+ })
+
+app.get("/error-page", (req,res) => {
+  res.render("error-page")
+})
+// app.get("/dashboard", (req, res) => {
+//   res.render("dashboard");
+//   //get request form db
+// });
+
+
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const userID = req.session['user_id'];
+  if (userID) {
+    db.query(`SELECT * FROM items WHERE user_id = $1;`, [userID])
+    .then((data) => {
+      console.log(data)
+      const items = data.rows;
+      const user_id = items[0].user_id;
+      res.render("index", { items, user_id:userID });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+
+  } else {
+    res.render("index", {user_id:userID});
+  }
+
+  // res.render("index", template);
+
 });
+
 
 app.post("/login", async(req, res) => {
   console.log(req.body)
@@ -85,9 +139,9 @@ app.post("/login", async(req, res) => {
   res.redirect("/");
 });
 
-app.post ("/logout",(req, res) =>  {
+app.get ("/logout",(req, res) =>  {
   req.session["user_id"] = null;
-  res.render("login")
+  res.redirect("/")
 });
 
 app.listen(PORT, () => {
