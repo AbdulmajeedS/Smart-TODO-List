@@ -1,0 +1,19 @@
+
+<nav>
+    <div class="topnav">
+      <div class="login-container">
+        <% if (user_id) { %>
+        <form action="/logout">
+          <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="30px" width="30px">
+          <button type="submit">Logout</button>
+        </form>
+        <% } else {  %>
+
+          <button> <a href="/register">Register</a></button>
+          <button> <a href="/login">Login</a></button>
+
+          <% } %>
+      </div>
+    </div>
+  </nav>
+

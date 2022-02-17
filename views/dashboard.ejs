@@ -1,36 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <title>Dashboard User</title>
-
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-
-</head>
-
-
+  <%- include('partials/_header.ejs') %>
 <body>
-  <%- include('partials/_header') %>
-  <!-- <nav>
-    <div class="topnav">
-      <div class="login-container">
-        <form action="/dashboard">
-          <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="30px" width="30px">
-          <button type="submit">Logout</button>
-        </form>
-      </div>
-    </div>
-  </nav> -->
-
+  <%- include('partials/_navbar.ejs') %>
   <div id="container">
     <h1> Smart-To-Do <i class="fa fa-plus"></i></h1>
     <h2>Catagories</h2>
@@ -47,7 +19,9 @@
 
     <input type="text" placeholder="Let's Add Something Amazing TO-Do!">
     <ul>
-
+      <% for(const item of items ) { %>
+        <li><span><i class="fa fa-trash"></i></span> <%=item.title%> </li>
+        <% } %>
     </ul>
   </div>
 </body>
